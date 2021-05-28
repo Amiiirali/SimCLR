@@ -159,11 +159,13 @@ def create_data_loader(config, chunk_id, training_set=True):
         return DataLoader(patch_dataset,  batch_sampler=batch_sampler,
                           num_workers=config["num_patch_workers"], pin_memory=True,)
     return DataLoader(patch_dataset, batch_size=config["batch_size"], sampler=None,
-                      shuffle=True, num_workers=config["num_patch_workers"], pin_memory=True,)
+                      shuffle=True, num_workers=config["num_patch_workers"], pin_memory=True,
+                      drop_last=True)
 
 def data_loader(config):
     train_dataset = create_data_loader(config, config["training_chunks"], training_set=True)
-    valid_dataset = create_data_loader(config, config["validation_chunks"], training_set=False)
+    valid_dataset = train_dataset 
+    # valid_dataset = create_data_loader(config, config["validation_chunks"], training_set=False)
     return train_dataset, valid_dataset
 
 def visualize_dataset(dataset):

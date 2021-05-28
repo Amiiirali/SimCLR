@@ -36,7 +36,7 @@ class PatchDataset(Dataset):
                                  transforms.RandomRotation(20),
                                  transforms.ToTensor()])
         if self.normalize:
-            transforms_array.extend(transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5)))
+            transforms_array.append(transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5)))
         transforms_ = transforms.Compose(transforms_array)
         return transforms_
 

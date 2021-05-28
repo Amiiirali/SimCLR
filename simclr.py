@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 
 import torch
 import torch.nn.functional as F
@@ -35,7 +36,9 @@ class SimCLR(object):
         self.checkpoints_folder = config["checkpoints"]
         self.config['eval_every_n_steps'] = self.config['eval_every_n_steps'] if self.config['eval_every_n_steps']!=-1 else len(self.train_dataset)
         self.config['log_every_n_steps'] = self.config['log_every_n_steps'] if self.config['log_every_n_steps']!=-1 else len(self.train_dataset)
-        logging.basicConfig(filename=os.path.join(self.writer.log_dir, 'training.log'), level=logging.DEBUG)
+        logging.basicConfig(filename=os.path.join(self.writer.log_dir, 'training.log'), level=logging.INFO)
+        logging.StreamHandler(sys.stdout)
+        # logging.addHandler()
 
         self._load_pre_trained_weights()
 
@@ -84,7 +87,7 @@ class SimCLR(object):
     def train(self):
 
         logging.info(f"Start SimCLR training for {self.config['epochs']} epochs.")
-        logging.info(f"Training with gpu: {self.device}.")
+        logging.info(f"Training with device: {self.device}.")
 
         n_iter = 0
         counter = 0
