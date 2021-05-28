@@ -163,8 +163,7 @@ def create_data_loader(config, chunk_id, training_set=True):
 
 def data_loader(config):
     train_dataset = create_data_loader(config, config["training_chunks"], training_set=True)
-    valid_dataset = train_dataset
-    # valid_dataset = create_data_loader(config, config["validation_chunks"], training_set=False)
+    valid_dataset = create_data_loader(config, config["validation_chunks"], training_set=False)
     return train_dataset, valid_dataset
 
 def visualize_dataset(dataset):
