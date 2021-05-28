@@ -33,7 +33,8 @@ class SimCLR(object):
 
         # utils.visualize_dataset(self.train_dataset)
         self.checkpoints_folder = config["checkpoints"]
-        self.config['eval_every_n_epochs'] = self.config['eval_every_n_epochs'] if self.config['eval_every_n_epochs']!=-1 else len(self.train_dataset)
+        self.config['eval_every_n_steps'] = self.config['eval_every_n_steps'] if self.config['eval_every_n_steps']!=-1 else len(self.train_dataset)
+        self.config['log_every_n_steps'] = self.config['log_every_n_steps'] if self.config['log_every_n_steps']!=-1 else len(self.train_dataset)
         logging.basicConfig(filename=os.path.join(self.writer.log_dir, 'training.log'), level=logging.DEBUG)
 
         self._load_pre_trained_weights()
@@ -116,7 +117,7 @@ class SimCLR(object):
             loss_ = 0
             counter = 0
             # validate the model if requested
-            if epoch % self.config['eval_every_n_epochs'] == 0:
+            if epoch % self.config['eval_every_n_steps'] == 0:
                 valid_loss = self._validate()
                 logging.info(f"Validation loss at {epoch} epoch, {n_iter} iteration is {valid_loss}.")
                 if valid_loss < best_valid_loss:

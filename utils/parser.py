@@ -66,7 +66,7 @@ def parse_input():
                         dest='weight_decay')
     parser_arg.add_argument('--temperature', default=0.07, type=float,
                         help='softmax temperature')
-    parser_arg.add_argument('--eval_every_n_epochs', default=100, type=int,
+    parser_arg.add_argument('--eval_every_n_steps', default=100, type=int,
                         help='Evaluation log every n steps')
     parser_arg.add_argument('--log_every_n_steps', default=100, type=int,
                         help='Log every n steps')
