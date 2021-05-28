@@ -1,0 +1,19 @@
+experiment_name: "test"
+log_dir: "/Users/amirali/Desktop/university/UBC/AIM Lab/Codes/PipeLines/log_dir"
+chunk_file_location: "/Users/amirali/Desktop/university/UBC/AIM Lab/Codes/PipeLines/slide_coords/groups_single.json"
+training_chunks: [0]
+validation_chunks: [1]
+patch_pattern: "annotation/subtype/slide/patch_size/magnification"
+subtypes: {"MMRD":0, "P53ABN":1, "P53WT":2, "POLE":3}
+base_encoder: "resnet18"
+out_dim: 256
+epochs: 2
+num_patch_workers: 4
+normalize: False
+use_cosine: True
+batch_size: 5
+learning_rate: 0.0003
+weight_decay: 10e-6
+temperature: 0.5
+eval_every_n_epochs: -1
+log_every_n_steps: 1
