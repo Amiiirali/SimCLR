@@ -120,7 +120,7 @@ class SimCLR(object):
             loss_ = 0
             counter = 0
             # validate the model if requested
-            if epoch % self.config['eval_every_n_steps'] == 0:
+            if n_iter % self.config['eval_every_n_steps'] == 0:
                 valid_loss = self._validate()
                 logging.info(f"Validation loss at {epoch} epoch, {n_iter} iteration is {valid_loss}.")
                 if valid_loss < best_valid_loss:

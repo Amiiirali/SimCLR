@@ -36,7 +36,7 @@ class SimCLRModel(nn.Module):
         layers = [pool, nn.Flatten()]
         # projection MLP
         num_ftrs = out_channel[base_encoder]
-        layers  += [nn.Linear(num_ftrs, num_ftrs)]
+        layers  += [nn.Linear(num_ftrs, num_ftrs), nn.ReLU()]
         layers  += [nn.Linear(num_ftrs, dim)]
         self.later_embedding = nn.Sequential(*layers)
 
